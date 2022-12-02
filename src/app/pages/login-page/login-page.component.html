@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="form-block">
+    <div class="title-block">
+      <div class="title">Login Form</div>
+      <span class="description">enter login and password for access</span>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="logIn()">
+      <div class="fields">
+        <div class="input-block">
+          <label for="login">Login</label>
+          <input class="text-input" id="login" type="text" placeholder="Your login" formControlName="login">
+        </div>
+        <div class="input-block">
+          <label for="password">Password</label>
+          <input class="text-input" id="password" type="password" placeholder="Your password" formControlName="password">
+        </div>
+      </div>
+      <div class="buttons">
+        <button [disabled]="login.errors?.required || password.errors?.required" type="submit">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

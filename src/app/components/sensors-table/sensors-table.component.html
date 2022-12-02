@@ -1,0 +1,102 @@
+<div class="sensors-table">
+  <div class="table-container">
+    <div class="search-block">
+      <input class="search-input" type="text" [(ngModel)]="searchQuery" placeholder="enter text to search">
+      <button class="search-button" (click)="filterSensors()">
+        <div class="search-button-content">
+          <fa-icon [icon]="faMagnifyingGlass"></fa-icon>
+          <span class="search-button-content-text">Search</span>
+        </div>
+      </button>
+    </div>
+    <table class="table">
+      <thead>
+      <tr class="table-head-line">
+        <td class="edit-sensor"></td>
+        <td class="table-head-col">Name</td>
+        <td class="table-head-col">Model</td>
+        <td class="table-head-col">Type</td>
+        <td class="table-head-col">Range</td>
+        <td class="table-head-col">Unit</td>
+        <td class="table-head-col">Location</td>
+        <td class="delete-sensor"></td>
+      </tr>
+      </thead>
+      <tbody>
+      <tr
+        class="table-body-line"
+        *ngFor="let sensor of sensors | slice:currentPage * 4:currentPage * 4 + 4"
+      >
+        <td class="edit-sensor">
+          <button
+            [ngClass]="roles.includes('ROLE_ADMIN') ? 'edit-item' : 'edit-item hidden'"
+            (click)="showEditDialog(sensor)"
+          >
+            &#9998;
+          </button>
+        </td>
+        <td class="table-body-col name"><div class="tooltip">
+          {{sensor.name}}
+          <span class="tooltip-text">{{sensor.description}}</span>
+        </div>
+        </td>
+        <td class="table-body-col">{{sensor.model}}</td>
+        <td class="table-body-col">{{sensor.type}}</td>
+        <td class="table-body-col">{{sensor.range_from}}-{{sensor.range_to}}<span *ngIf="sensor.unit == '%'">%</span></td>
+        <td class="table-body-col">{{sensor.unit}}</td>
+        <td class="table-body-col">{{sensor.location}}</td>
+        <td class="delete-sensor">
+          <button
+            [ngClass]="roles.includes('ROLE_ADMIN') ? 'delete-item' : 'delete-item hidden'"
+            (click)="deleteSensor(sensor)"
+          >&#10006;</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="foot">
+    <div class="add-sensor">
+      <button
+        [ngClass]="roles.includes('ROLE_ADMIN') ? 'add-sensor-btn' : 'add-sensor-btn hidden'"
+        (click)="changeAddSensorModal(true)"
+      >Add Sensor</button>
+    </div>
+    <div class="nav-items">
+      <div class="prev-page nav-item">
+        <button
+          [disabled]="currentPage == 0"
+          (click)="prevPage()"
+        >Previous</button>
+      </div>
+      <div class="pages">
+        <button
+          *ngFor="let page of countCurrentThreePages(currentPage)"
+          [ngClass]="currentPage == page ? 'current-btn' : ''"
+          class="nav-btn nav-item"
+          (click)="changePage(page)"
+        >
+          {{page+1}}
+        </button>
+      </div>
+      <div class="next-page nav-item">
+        <button
+          (click)="nextPage()"
+          [disabled]="currentPage == pages.length - 1"
+        >Next</button>
+      </div>
+      <div class="total-pages nav-item">
+        Total: {{pages.length}}
+      </div>
+    </div>
+  </div>
+  <app-add-sensor-modal
+    [active]="addSensorModalActive"
+    [sensor]="currentSensor"
+    (onModal)="changeAddSensorModal($event)"
+    (onAddSensors)="addSensor($event)"
+    (onSensor)="changeCurrentSensor($event)"
+    (onEditSensor)="editSensor($event)"
+  ></app-add-sensor-modal>
+</div>

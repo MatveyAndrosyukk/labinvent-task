@@ -1,0 +1,177 @@
+<div
+  [ngClass]="active ? 'modal active' : 'modal'"
+  (click)="closeModal()"
+>
+  <div
+    [ngClass]="active? 'modal-content active' : 'modal-content'"
+    (click)="$event.stopPropagation()"
+  >
+    <div class="title">
+      <h1>Add/edit</h1>
+    </div>
+    <form [formGroup]="form" (ngSubmit)="addOrEditSensor()">
+      <div class="block">
+        <div class="error-block">
+          <p class="error" *ngIf="(name.errors?.required && name.touched)"
+          >
+            Fill this field.
+          </p>
+          <p class="error" *ngIf="(name.errors?.maxlength)">
+            Length should be less then 30 symbols.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="name">Name</label>
+          <input class="input_text" id="name" type="text" placeholder="Name" formControlName="name">
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(model.errors?.required && model.touched)"
+          >
+            Fill this field.
+          </p>
+          <p
+            class="error"
+            *ngIf="(model.errors?.maxlength)"
+          >
+            Length should be less then 15 symbols.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="model">Model</label>
+          <input class="input_text" id="model" type="text" placeholder="Model" formControlName="model">
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(range_from.errors?.required &&
+           range_to.errors?.required && range_from.touched && range_to.touched)"
+          >
+            Fill this fields.
+          </p>
+          <p
+            class="error"
+            *ngIf="(form.errors?.invalidRange && range_from.touched && range_to.touched)"
+          >
+            Range 'from' should be less then 'to'.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="range">Range</label>
+          <div id="range" class="range-inputs">
+            <label class="range-label range-label-from" for="range_from">From</label>
+            <input id="range_from" class="input_number" type="number" formControlName="range_from">
+            <label class="range-label range-label-to" for="range_to">To</label>
+            <input id="range_to" class="input_number" type="number" formControlName="range_to">
+          </div>
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(type.errors?.required && type.touched)"
+          >
+            Fill this field.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="type">Type</label>
+          <select class="input_text" id="type" formControlName="type">
+            <option disabled>Choose the sensor's type</option>
+            <option
+              *ngFor="let sensorType of sensorTypes"
+              [value]="sensorType.value"
+            >{{sensorType.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(unit.errors?.required && unit.touched)"
+          >Fill this field</p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="unit">Unit</label>
+          <select class="input_text" id="unit" formControlName="unit">
+            <option disabled>Choose the sensor's unit</option>
+            <option
+              *ngFor="let sensorUnit of sensorUnits"
+              [value]="sensorUnit.value"
+            >{{sensorUnit.name}}</option>
+          </select>
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(location.errors?.required && location.touched)"
+          >
+            Fill this field.
+          </p>
+          <p
+            class="error"
+            *ngIf="(location.errors?.maxlength)"
+          >
+            Length should be less then 40 symbols.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="location">Location</label>
+          <input class="input_text" id="location" type="text" placeholder="Location" formControlName="location">
+        </div>
+      </div>
+      <div class="block">
+        <div class="error-block">
+          <p
+            class="error"
+            *ngIf="(description.errors?.required && description.touched)"
+          >
+            Fill this field.
+          </p>
+          <p
+            class="error"
+            *ngIf="(description.errors?.maxlength)"
+          >
+            Length should be less then 200 symbols.
+          </p>
+          <p class="error hidden">.</p>
+        </div>
+        <div class="input-block">
+          <label class="label" for="description">Description</label>
+          <textarea id="description" placeholder="Here is some text input.
+
+Here is another paragraph of input" formControlName="description"></textarea>
+        </div>
+      </div>
+      <div class="buttons">
+        <button
+          class="form-button"
+          type="submit"
+          [disabled]="name.errors?.required || name.errors?.maxLength || model.errors?.required
+           || model.errors?.maxlength || range_from.errors?.required || range_to.errors?.required
+            || type.errors?.required || unit.errors?.required || location.errors?.required
+             || location.errors?.maxlength || description.errors?.required || description.errors?.maxlength
+              || form.errors?.invalidRange"
+        >
+          Save
+        </button>
+        <button class="form-button" (click)="closeModal()">Cancel</button>
+      </div>
+    </form>
+  </div>
+</div>

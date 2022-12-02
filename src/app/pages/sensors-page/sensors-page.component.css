@@ -1,0 +1,25 @@
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 100px;
+}
+
+.title{
+  margin-left: 40px;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logout{
+  cursor: pointer;
+  margin-right: 60px;
+  font-size: 12px;
+  text-decoration: underline;
+  color: #008eeb;
+  font-weight: bold;
+}
+
+.container{
+  padding: 0 200px;
+}
