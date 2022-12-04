@@ -14,6 +14,6 @@ export class SensorsPageComponent {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
     localStorage.removeItem('roles')
-    this.router.navigate(['/login'])
+    this.router.navigate(['/login']).then()
   }
 }

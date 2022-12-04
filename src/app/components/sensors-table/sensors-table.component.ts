@@ -3,7 +3,7 @@ import {ISensor} from "../../model/Sensor";
 import {countPages} from "../../utils/count-pages";
 import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
 import {SensorsService} from "../../services/sensors.service";
-import {Observable, tap} from "rxjs";
+import {Observable} from "rxjs";
 import {Store} from "@ngrx/store";
 import * as SensorsActions from "../../ngRx/actions/sensor.actions"
 import {filterSensors} from "../../utils/filter.sensors";
@@ -49,20 +49,20 @@ export class SensorsTableComponent implements OnInit {
   }
 
   addSensor(sensor: ISensor) {
-    this.sensorsService.saveSensor(sensor).subscribe(res => {
+    this.sensorsService.saveSensor(sensor).subscribe(() => {
       this.store.dispatch(new SensorsActions.AddSensor(sensor))
       this.setPages()
     })
   }
 
   editSensor(sensor: ISensor) {
-    this.sensorsService.editSensor(sensor).subscribe(res => {
+    this.sensorsService.editSensor(sensor).subscribe(() => {
       this.store.dispatch(new SensorsActions.UpdateSensor(sensor))
     })
   }
 
   deleteSensor(sensor: ISensor) {
-    this.sensorsService.deleteSensor(sensor).subscribe(res => {
+    this.sensorsService.deleteSensor(sensor).subscribe(() => {
       this.store.dispatch(new SensorsActions.DeleteSensor(sensor))
       this.setPages()
       if (this.currentPage == this.pages[this.pages.length - 1] + 1) this.currentPage--

@@ -19,7 +19,7 @@ export class AuthService {
   }
 
   logIn(login: string, password: string) {
-    var formData = {"username": login, "password": password};
+    const formData = {"username": login, "password": password};
     return this.http.post("/api/auth", formData)
       .pipe(
         catchError(this.errorHandler.bind(this))

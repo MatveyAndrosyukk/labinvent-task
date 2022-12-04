@@ -14,9 +14,8 @@ import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {HttpClientModule} from "@angular/common/http";
 import {StoreModule} from "@ngrx/store";
 import {sensorsReducer} from "./ngRx/reducers/sensorsReducer";
-import { LoaderComponent } from './components/UI/loader/loader.component';
-import { GlobalErrorComponent } from './components/global.error/global.error.component';
-import { PaginationComponent } from './components/pagination/pagination.component';
+import {LoaderComponent} from './components/UI/loader/loader.component';
+import {GlobalErrorComponent} from './components/global.error/global.error.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +26,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     StopPropagationDirective,
     LoginPageComponent,
     LoaderComponent,
-    GlobalErrorComponent,
-    PaginationComponent
+    GlobalErrorComponent
   ],
   imports: [
     BrowserModule,

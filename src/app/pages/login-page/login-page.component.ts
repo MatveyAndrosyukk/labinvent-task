@@ -29,8 +29,8 @@ export class LoginPageComponent implements OnInit{
   }
 
   logIn(){
-    this.authService.logIn(this.form.value.login, this.form.value.password).subscribe(response => {
-      this.router.navigate([''])
+    this.authService.logIn(this.form.value.login, this.form.value.password).subscribe(() => {
+      this.router.navigate(['']).then()
     })
   }
 
