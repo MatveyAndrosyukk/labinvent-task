@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {AbstractControl, FormBuilder, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {ISensor} from "../../model/Sensor";
-import {getSensorFromForm} from "../../utils/get-sensor-from-form";
+import {getSensorFromForm} from "../../utils/get.sensor.from.form";
 
 @Component({
   selector: 'app-add-sensor-modal',
@@ -43,8 +43,8 @@ export class AddSensorModalComponent implements OnChanges{
       id: 0,
       name: '',
       model: '',
-      range_from: 0,
-      range_to: 0,
+      rangeFrom: 0,
+      rangeTo: 0,
       type: '',
       unit: '',
       location: '',
@@ -115,9 +115,9 @@ export class AddSensorModalComponent implements OnChanges{
         [Validators.required, Validators.maxLength(30)]),
       model: this.fb.control(this.sensor.model,
         [Validators.required, Validators.maxLength(15)]),
-      range_from: this.fb.control(this.sensor.range_from,
+      range_from: this.fb.control(this.sensor.rangeFrom,
         [Validators.required]),
-      range_to: this.fb.control(this.sensor.range_to,
+      range_to: this.fb.control(this.sensor.rangeTo,
         [Validators.required]),
       type: this.fb.control(this.sensor.type,
         [Validators.required]),

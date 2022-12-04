@@ -1,6 +1,12 @@
 import { Component } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "./services/auth.service";
+import {Store} from "@ngrx/store";
+import {Observable} from "rxjs";
+
+interface AppState{
+  message: string
+}
 
 @Component({
   selector: 'app-root',
@@ -8,8 +14,4 @@ import {AuthService} from "./services/auth.service";
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private router: Router, public authService: AuthService) {
-  }
-
-
 }

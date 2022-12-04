@@ -4,6 +4,10 @@
       <div class="title">Login Form</div>
       <span class="description">enter login and password for access</span>
     </div>
+    <div class="error-block">
+      <div class="invalid-credentials hidden">.</div>
+      <div class="invalid-credentials" *ngIf="errorService.error$ | async">Неверный логин или пароль</div>
+    </div>
     <form [formGroup]="form" (ngSubmit)="logIn()">
       <div class="fields">
         <div class="input-block">

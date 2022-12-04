@@ -10,8 +10,13 @@ import {AddSensorModalComponent} from './components/add-sensor-modal/add-sensor-
 import {StopPropagationDirective} from './directives/stop-propagation.directive';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
+import {LoginPageComponent} from './pages/login-page/login-page.component';
 import {HttpClientModule} from "@angular/common/http";
+import {StoreModule} from "@ngrx/store";
+import {sensorsReducer} from "./ngRx/reducers/sensorsReducer";
+import { LoaderComponent } from './components/UI/loader/loader.component';
+import { GlobalErrorComponent } from './components/global.error/global.error.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +25,10 @@ import {HttpClientModule} from "@angular/common/http";
     SensorsTableComponent,
     AddSensorModalComponent,
     StopPropagationDirective,
-    LoginPageComponent
+    LoginPageComponent,
+    LoaderComponent,
+    GlobalErrorComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,
@@ -29,7 +37,8 @@ import {HttpClientModule} from "@angular/common/http";
     ReactiveFormsModule,
     FormsModule,
     FontAwesomeModule,
-    HttpClientModule
+    HttpClientModule,
+    StoreModule.forRoot({sensors: sensorsReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

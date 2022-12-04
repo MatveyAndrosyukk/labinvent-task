@@ -32,10 +32,10 @@
 
 .table-body-col{
   border: 2px solid #919296;
-  padding: 4px 40px;
+  padding: 4px 0;
   font-size: 13px;
-  height: 30px;
-  text-align: center;
+  width: 942px;
+  height: 40px;
 }
 
 .name{
@@ -206,4 +206,11 @@
 
 .tooltip:hover .tooltip-text {
   visibility: visible;
+}
+
+.loader{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 230px;
 }
