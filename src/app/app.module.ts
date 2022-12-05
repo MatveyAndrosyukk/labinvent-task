@@ -16,6 +16,7 @@ import {StoreModule} from "@ngrx/store";
 import {sensorsReducer} from "./ngRx/reducers/sensorsReducer";
 import {LoaderComponent} from './components/UI/loader/loader.component';
 import {GlobalErrorComponent} from './components/global.error/global.error.component';
+import {NotFoundPageComponent} from './pages/not-found-page/not-found-page.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {GlobalErrorComponent} from './components/global.error/global.error.compo
     StopPropagationDirective,
     LoginPageComponent,
     LoaderComponent,
-    GlobalErrorComponent
+    GlobalErrorComponent,
+    NotFoundPageComponent
   ],
   imports: [
     BrowserModule,

@@ -4,11 +4,12 @@ import {RouterModule, Routes} from "@angular/router";
 import {SensorsPageComponent} from "./pages/sensors-page/sensors-page.component";
 import {LoginPageComponent} from "./pages/login-page/login-page.component";
 import {AuthGuard} from "./guards/auth-guard.service";
+import {NotFoundPageComponent} from "./pages/not-found-page/not-found-page.component";
 
 const routes: Routes = [
   {path: '', component: SensorsPageComponent, canActivate:  [AuthGuard]},
   {path: 'login', component: LoginPageComponent},
-  {path: '**', redirectTo: '', pathMatch: 'full'}
+  {path: '**', component: NotFoundPageComponent, pathMatch: 'full'}
 ]
 
 @NgModule({
